@@ -2,8 +2,10 @@ package com.example.ecomerce.Activitys;
 
 import android.os.Bundle;
 
+import com.example.ecomerce.Entity.User;
 import com.example.ecomerce.Fragments.CategoryFragment;
 import com.example.ecomerce.R;
+import com.example.ecomerce.Tools.UserSession;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -33,6 +35,8 @@ import android.widget.Toast;
 public class MenuActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
     private AppBarConfiguration mAppBarConfiguration;
+    private UserSession userSession;
+    private User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,8 +65,9 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
         toggle.syncState();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-
-        //navigationView.inflateMenu(user.isIsProvider() ? R.menu.activity_main_supplier : R.menu.activity_main_client);
+        userSession=new UserSession(getApplicationContext());
+        user=userSession.getUserDetails();
+        navigationView.inflateMenu(user.isIsProvider() ? R.menu.activity_main_supl : R.menu.activity_main_client);
 
         navigationView.setNavigationItemSelectedListener(this);
 

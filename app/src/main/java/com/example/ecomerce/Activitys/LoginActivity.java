@@ -9,6 +9,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.ecomerce.Entity.User;
 import com.example.ecomerce.R;
 import com.example.ecomerce.Tools.UserSession;
 
@@ -29,8 +30,7 @@ public class LoginActivity extends AppCompatActivity {
     public void onClickLogin(View view) {
         if(ediTextUsuario.getText().toString().trim().equals("odaliceballopimentel@gmail.com")&ediTextPass.getText().toString().equals("1234")) {
             UserSession userSession=new UserSession(getApplicationContext());
-            userSession.createLoginSession();
-            userSession.setUser(ediTextUsuario.getText().toString().trim());
+            userSession.createLoginSession(new User("Odali Ceballo", "oceballo", "1234", "odaliceballopimentel@gmail.com",true));
 
             Intent intent=new Intent(LoginActivity.this, MenuActivity.class);
             startActivity(intent);
