@@ -1,5 +1,6 @@
 package com.example.ecomerce.Activitys;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.ecomerce.Entity.User;
@@ -92,6 +93,11 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
             CategoryFragment fragment = new CategoryFragment();
             fragmentTransaction.add(R.id.container, fragment);
             fragmentTransaction.commit();
+        }
+        if(id==R.id.nav_logout) {
+            userSession.logoutUser();
+            startActivity(new Intent(MenuActivity.this, LoginActivity.class));
+            finish();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

@@ -25,6 +25,9 @@ public class LoginActivity extends AppCompatActivity {
         ediTextUsuario=(EditText)findViewById(R.id.login_email);
         ediTextPass=(EditText)findViewById(R.id.login_password);
 
+        ediTextUsuario.setText("odaliceballopimentel@gmail.com");
+        ediTextPass.setText("1234");
+
     }
 
     public void onClickLogin(View view) {
