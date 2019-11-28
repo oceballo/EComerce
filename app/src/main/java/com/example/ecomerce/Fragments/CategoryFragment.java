@@ -16,6 +16,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.ecomerce.R;
+import com.example.ecomerce.Tools.CategoryAdapter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class CategoryFragment extends Fragment {
@@ -55,22 +59,44 @@ public class CategoryFragment extends Fragment {
         }
 
     @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_category, container, false);
 
-//        setHasOptionsMenu(true);
-//        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-//        recyclerView.setHasFixedSize(true);
-//        recyclerView.setItemAnimator(new DefaultItemAnimator());
-        //recyclerView.setAdapter(adapter);
+        recyclerView = view.findViewById(R.id.category_recycler_view);
+        // Inflate the layout for this fragment
+        return view;
+
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_category, container, false);
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        setHasOptionsMenu(true);
+
+
+        final List<String> elements = new ArrayList<>();
+        elements.add("Electrodomesticos");
+        elements.add("Smartphones");
+        elements.add("Videojuegos");
+        elements.add("Libros");
+        elements.add("Peliculas");
+        elements.add("Ropa");
+        elements.add("Belleza");
+        elements.add("Zapatos");
+        elements.add("Deportes");
+        elements.add("Otros");
+
+        final CategoryAdapter adapter = new CategoryAdapter(getContext(), elements);
+
+
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
+        recyclerView.setAdapter(adapter);
     }
+
+
 
     @Override
     public void onResume() {
